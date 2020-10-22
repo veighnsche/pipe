@@ -1,0 +1,22 @@
+{
+  "name": "@veighsnche/pipe",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/veighnsche/pipe.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/veighnsche/pipe/issues"
+  },
+  "homepage": "https://github.com/veighnsche/pipe#readme",
+  "devDependencies": {
+    "typescript": "^4.0.3"
+  }
+}
