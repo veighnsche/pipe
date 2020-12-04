@@ -1,28 +1,27 @@
-export type PipeFunction = (value: any) => any
-export type NextFunction = (next: Function) => void
+export type NextFunction = (next: Function, args?: any) => void
 
 let logging = false
 
-function log<T = any>(fn: PipeFunction, value: T): T {
+export function toggleLogging(val: boolean): void {
+  logging = val ?? !logging
+}
+
+
+function log<T = any>(f: Function, value: T): T {
   logging && console.log({
-    functionEval: fn.toString(),
+    functionEval: f.toString(),
     val: value,
   })
   return value
 }
 
-export function toggleLogging(): void {
-  logging = !logging
-}
-
-
-export function pipe<T>(...functions: PipeFunction[]): PipeFunction {
+export function pipe<T>(...functions: Function[]): Function {
   return function (value: any): T {
-    return functions.reduce((val: any, f: PipeFunction) => f(log(f, val)), value)
+    return functions.reduce((val: any, f: Function) => f(log(f, val)), value)
   }
 }
 
 export function asyncPipe(...functions: NextFunction[]) {
-  (functions.reverse().reduce((val, f) => () => f(log(f, val))) as () => NextFunction)()
+  (functions.reverse().reduce((chain, f) => (args: any) => f(chain, log(f, args))) as () => NextFunction)()
 }
 
