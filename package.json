@@ -1,22 +1,24 @@
 {
-  "name": "@veighsnche/pipe",
-  "version": "0.0.1",
-  "description": "",
-  "main": "index.ts",
-  "scripts": {
-    "test": "echo \"Error: no test specified\""
+  "author": "veighnsche",
+  "bugs": {
+    "url": "https://github.com/veighnsche/pipe/issues"
   },
+  "description": "",
+  "devDependencies": {
+    "typescript": "^4.1.2"
+  },
+  "homepage": "https://github.com/veighnsche/pipe#readme",
+  "license": "MIT",
+  "main": "index.js",
+  "name": "@veighsnche/pipe",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/veighnsche/pipe.git"
   },
-  "author": "",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/veighnsche/pipe/issues"
+  "scripts": {
+    "test": "echo \"Error: no test specified\"",
+    "prepublish": "tsc"
   },
-  "homepage": "https://github.com/veighnsche/pipe#readme",
-  "devDependencies": {
-    "typescript": "^4.0.3"
-  }
+  "types": "index.d.ts",
+  "version": "0.0.1"
 }

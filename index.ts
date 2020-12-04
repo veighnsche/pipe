@@ -1,8 +1,9 @@
-export type Fn = (value: any) => any
+export type PipeFunction = (value: any) => any
+export type NextFunction = (next: Function) => void
 
 let logging = false
 
-const log = (fn: Fn, value: any) => {
+function log<T = any>(fn: PipeFunction, value: T): T {
   logging && console.log({
     functionEval: fn.toString(),
     val: value,
@@ -10,8 +11,18 @@ const log = (fn: Fn, value: any) => {
   return value
 }
 
-export const pipe = (...functions: any): Fn => value => functions.reduce((val: any, fn: Fn) => fn(log(fn, val)), value)
-
-export const toggleLogging = (): void => {
+export function toggleLogging(): void {
   logging = !logging
 }
+
+
+export function pipe<T>(...functions: PipeFunction[]): PipeFunction {
+  return function (value: any): T {
+    return functions.reduce((val: any, f: PipeFunction) => f(log(f, val)), value)
+  }
+}
+
+export function asyncPipe(...functions: NextFunction[]) {
+  (functions.reverse().reduce((val, f) => () => f(log(f, val))) as () => NextFunction)()
+}
+
